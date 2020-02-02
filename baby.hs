@@ -45,3 +45,30 @@ sum' (x:xs) = x + sum' xs
 
 capital "" = "Empty string, whoops!"
 capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
+
+-- Guard
+bmiTell weight height
+  | bmi <= skinny = "You're underweight, you emo, you!"
+  | bmi <= normal = "You're supposedly normal. Pfff, I bet you are ugly!"
+  | bmi <= fat = "You're fat! Lose some weight, fatty!"
+  | otherwise = "You're a whale! Congratulations!"
+  where bmi = weight / height ^ 2
+        skinny = 18.5
+        normal = 25.0
+        fat = 30.0
+
+max' a b
+  | a > b = a
+  | otherwise = b
+
+a `myCompare` b
+  | a > b = GT
+  | a < b = LT
+  | otherwise = EQ
+
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+  where (f:_) = firstname
+        (l:_) = lastname
+
+calcBmis xs = [bmi w h | (w, h) <- xs]
+  where bmi weight height = weight / height ^ 2
