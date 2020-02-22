@@ -99,22 +99,3 @@ zipWith' _ _ [] = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
 
 flip' f y x = f x y
-
--- High order function
-quicksort' [] = []
-quicksort' (x:xs) = 
-  let smallerSorted = quicksort' (filter (<=x) xs)
-      biggerSorted = quicksort' (filter (>x) xs)
-  in smallerSorted ++ [x] ++ biggerSorted
-
-largestDivisible = head (filter p [100000, 99999..])
-  where p x = x `mod` 3829 == 0
-
--- - Collatz sequences
-chain 1 = [1]
-chain n 
-  | even n = n : chain (n `div` 2)
-  | odd n = n : chain (n*3 + 1)
-
-numLongChains = length (filter isLong (map chain [1..100]))
-  where isLong x = length x > 15
